@@ -38,16 +38,10 @@ function App() {
 				<section id="core-concepts">
 					<h2>Core Concepts</h2>
 					<ul>
-						{/* Using the spread operator(...) which allows us to pass all properties of an object as props */}
-						<CoreConcept {...CORE_CONCEPTS[0]} />
-						<CoreConcept {...CORE_CONCEPTS[1]} />
-						<CoreConcept {...CORE_CONCEPTS[2]} />
-						{/* Using explicit props */}
-						<CoreConcept
-							title={CORE_CONCEPTS[3].title}
-							description={CORE_CONCEPTS[3].description}
-							image={CORE_CONCEPTS[3].image}
-						/>
+						{CORE_CONCEPTS.map((conceptItem) => (
+							// Key is a prop which must be unique and identifies each element
+							<CoreConcept key= {conceptItem.title} {...conceptItem} />
+						))}
 					</ul>
 				</section>
 				<section id="examples">
