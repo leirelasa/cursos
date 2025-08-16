@@ -56,6 +56,7 @@ function App() {
 						{/* Using the TabButton component, passing the onClickAction prop with an arrow function 
 						because we want to pass the specific tab name to the handler but not execute it immediately */}
 						<TabButton
+							isSelected={selectedTopic === "components"}
 							onClickAction={() =>
 								handleClickAction("components")
 							}
@@ -63,16 +64,19 @@ function App() {
 							{EXAMPLES.components.title}
 						</TabButton>
 						<TabButton
+							isSelected={selectedTopic === "jsx"}
 							onClickAction={() => handleClickAction("jsx")}
 						>
 							{EXAMPLES.jsx.title}
 						</TabButton>
 						<TabButton
+							isSelected={selectedTopic === "props"}
 							onClickAction={() => handleClickAction("props")}
 						>
 							{EXAMPLES.props.title}
 						</TabButton>
 						<TabButton
+							isSelected={selectedTopic === "state"}
 							onClickAction={() => handleClickAction("state")}
 						>
 							{EXAMPLES.state.title}
