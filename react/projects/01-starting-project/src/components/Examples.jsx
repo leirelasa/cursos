@@ -34,6 +34,7 @@ export default function Examples() {
 	return (
 		<Section title="Examples" id="examples">
 			<Tabs
+				ButtonsContainer="menu"
 				buttons={
 					<>
 						{/* Using the TabButton component, passing the onClickAction prop with an arrow function 
