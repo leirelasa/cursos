@@ -36,6 +36,7 @@ export default function GameBoard({ onSelectSquare, turns }) {
 	// }
 
 	// We'll iterate over the main array first and then over every array
+    // We can disable the button if it's already been clicked
 	return (
 		<ol id="game-board">
 			{gameBoard.map((row, rowId) => (
@@ -44,7 +45,10 @@ export default function GameBoard({ onSelectSquare, turns }) {
 						{row.map((column, columnId) => (
 							<li key={columnId}>
 								<button
-									onClick={() => onSelectSquare(rowId, columnId)}
+									onClick={() =>
+										onSelectSquare(rowId, columnId)
+									}
+									disabled={column === null ? false : true}
 								>
 									{column}
 								</button>
