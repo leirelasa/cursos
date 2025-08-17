@@ -24,6 +24,8 @@ function App() {
 				...turns,
 			];
 
+			console.log(updatedTurns);
+
 			return updatedTurns;
 		});
 	}
@@ -50,7 +52,7 @@ function App() {
 						turns={turns}
 					/>
 				</div>
-				<Log />
+				<Log turns={turns} />
 			</main>
 		</>
 	);
