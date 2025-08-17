@@ -1,6 +1,7 @@
 import { EXAMPLES } from "../data";
 import TabButton from "./TabButton.jsx";
 import Section from "./Section.jsx";
+import Tabs from "./Tabs.jsx";
 // Handling UI rendering -> React Hooks which are regular functions that can be used in components
 import { useState } from "react";
 
@@ -32,35 +33,41 @@ export default function Examples() {
 
 	return (
 		<Section title="Examples" id="examples">
-			<menu>
-				{/* Using the TabButton component, passing the onClickAction prop with an arrow function 
+			<Tabs
+				buttons={
+					<>
+						{/* Using the TabButton component, passing the onClickAction prop with an arrow function 
 						because we want to pass the specific tab name to the handler but not execute it immediately */}
-				<TabButton
-					isSelected={selectedTopic === "components"}
-					onClick={() => handleClickAction("components")}
-				>
-					{EXAMPLES.components.title}
-				</TabButton>
-				<TabButton
-					isSelected={selectedTopic === "jsx"}
-					onClick={() => handleClickAction("jsx")}
-				>
-					{EXAMPLES.jsx.title}
-				</TabButton>
-				<TabButton
-					isSelected={selectedTopic === "props"}
-					onClick={() => handleClickAction("props")}
-				>
-					{EXAMPLES.props.title}
-				</TabButton>
-				<TabButton
-					isSelected={selectedTopic === "state"}
-					onClick={() => handleClickAction("state")}
-				>
-					{EXAMPLES.state.title}
-				</TabButton>
-			</menu>
-			{tabContent}
+
+						<TabButton
+							isSelected={selectedTopic === "components"}
+							onClick={() => handleClickAction("components")}
+						>
+							{EXAMPLES.components.title}
+						</TabButton>
+						<TabButton
+							isSelected={selectedTopic === "jsx"}
+							onClick={() => handleClickAction("jsx")}
+						>
+							{EXAMPLES.jsx.title}
+						</TabButton>
+						<TabButton
+							isSelected={selectedTopic === "props"}
+							onClick={() => handleClickAction("props")}
+						>
+							{EXAMPLES.props.title}
+						</TabButton>
+						<TabButton
+							isSelected={selectedTopic === "state"}
+							onClick={() => handleClickAction("state")}
+						>
+							{EXAMPLES.state.title}
+						</TabButton>
+					</>
+				}
+			>
+				{tabContent}
+			</Tabs>
 		</Section>
 	);
 }
