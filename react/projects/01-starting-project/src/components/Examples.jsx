@@ -1,10 +1,11 @@
 import { EXAMPLES } from "../data";
 import TabButton from "./TabButton.jsx";
+import Section from "./Section.jsx";
 // Handling UI rendering -> React Hooks which are regular functions that can be used in components
 import { useState } from "react";
 
 export default function Examples() {
-    // Use state must be called only at top level
+	// Use state must be called only at top level
 	// When using state, the component code will be reevaluated and reexecuted
 	// Default value, then to update the UI we need to set the tabContent state
 	let [selectedTopic, setSelectedTopic] = useState();
@@ -30,37 +31,36 @@ export default function Examples() {
 	}
 
 	return (
-		<section id="examples">
-			<h2>Examples</h2>
+		<Section title="Examples" id="examples">
 			<menu>
 				{/* Using the TabButton component, passing the onClickAction prop with an arrow function 
 						because we want to pass the specific tab name to the handler but not execute it immediately */}
 				<TabButton
 					isSelected={selectedTopic === "components"}
-					onClickAction={() => handleClickAction("components")}
+					onClick={() => handleClickAction("components")}
 				>
 					{EXAMPLES.components.title}
 				</TabButton>
 				<TabButton
 					isSelected={selectedTopic === "jsx"}
-					onClickAction={() => handleClickAction("jsx")}
+					onClick={() => handleClickAction("jsx")}
 				>
 					{EXAMPLES.jsx.title}
 				</TabButton>
 				<TabButton
 					isSelected={selectedTopic === "props"}
-					onClickAction={() => handleClickAction("props")}
+					onClick={() => handleClickAction("props")}
 				>
 					{EXAMPLES.props.title}
 				</TabButton>
 				<TabButton
 					isSelected={selectedTopic === "state"}
-					onClickAction={() => handleClickAction("state")}
+					onClick={() => handleClickAction("state")}
 				>
 					{EXAMPLES.state.title}
 				</TabButton>
 			</menu>
 			{tabContent}
-		</section>
+		</Section>
 	);
 }
