@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol }) {
+export default function Player({ initialName, symbol, isActive }) {
 	const [isEditing, setisEditing] = useState(false);
 	const [name, setName] = useState(initialName);
 
@@ -21,17 +21,17 @@ export default function Player({ initialName, symbol }) {
 
 	function handleEditClick() {
 		//console.log(`Button Edit of player ${name} clicked.`);
-        // Best practice to pass a function, not directly !isEditing because does not evalute at the moment, schedules an update of the state
+		// Best practice to pass a function, not directly !isEditing because does not evalute at the moment, schedules an update of the state
 		setisEditing((editing) => !editing);
 	}
 
-    function handleChange(event) {
-        //console.log(event);
-        setName(event.target.value)
-    }
+	function handleChange(event) {
+		//console.log(event);
+		setName(event.target.value);
+	}
 
 	return (
-		<li>
+		<li className={isActive ? "active" : undefined}>
 			<span className="player">
 				{nameContainer}
 				<span className="player-symbol">{symbol}</span>

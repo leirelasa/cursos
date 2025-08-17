@@ -4,7 +4,7 @@ const initialGameBoard = [
 	[null, null, null],
 	[null, null, null],
 ];
-export default function GameBoard() {
+export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
 	const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
 	// Inmutable way of updating
@@ -15,7 +15,12 @@ export default function GameBoard() {
 				...prevGameBoard.map((innerArray) => [...innerArray]),
 			];
 
-			updatedGameBoard[row][column] = "X";
+            // Just change the value if its null
+			if (updatedGameBoard[row][column] === null) {
+				updatedGameBoard[row][column] = activePlayerSymbol;
+				onSelectSquare();
+			}
+
 			return updatedGameBoard;
 		});
 	}
