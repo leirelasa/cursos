@@ -4,26 +4,36 @@ const initialGameBoard = [
 	[null, null, null],
 	[null, null, null],
 ];
-export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
-	const [gameBoard, setGameBoard] = useState(initialGameBoard);
+export default function GameBoard({ onSelectSquare, turns }) {
+	let gameBoard = initialGameBoard;
+
+	// Derives from the state of the App component
+	for (const turn of turns) {
+		const { square, player } = turn;
+		const { row, col } = square;
+
+		gameBoard[row][col] = player;
+	}
+
+	//const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
 	// Inmutable way of updating
-	function handleSelectSquare(row, column) {
-		setGameBoard((prevGameBoard) => {
-			// Working with a new reference, creating a copy of the array
-			const updatedGameBoard = [
-				...prevGameBoard.map((innerArray) => [...innerArray]),
-			];
+	// function handleSelectSquare(row, column) {
+	// 	setGameBoard((prevGameBoard) => {
+	// 		// Working with a new reference, creating a copy of the array
+	// 		const updatedGameBoard = [
+	// 			...prevGameBoard.map((innerArray) => [...innerArray]),
+	// 		];
 
-            // Just change the value if its null
-			if (updatedGameBoard[row][column] === null) {
-				updatedGameBoard[row][column] = activePlayerSymbol;
-				onSelectSquare();
-			}
+	//         // Just change the value if its null
+	// 		if (updatedGameBoard[row][column] === null) {
+	// 			updatedGameBoard[row][column] = activePlayerSymbol;
+	// 			onSelectSquare();
+	// 		}
 
-			return updatedGameBoard;
-		});
-	}
+	// 		return updatedGameBoard;
+	// 	});
+	// }
 
 	// We'll iterate over the main array first and then over every array
 	return (
@@ -34,9 +44,7 @@ export default function GameBoard({ onSelectSquare, activePlayerSymbol }) {
 						{row.map((column, columnId) => (
 							<li key={columnId}>
 								<button
-									onClick={() =>
-										handleSelectSquare(rowId, columnId)
-									}
+									onClick={() => onSelectSquare(rowId, columnId)}
 								>
 									{column}
 								</button>

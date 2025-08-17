@@ -2,11 +2,30 @@ import { useState } from "react";
 import Header from "./components/Header.jsx";
 import Player from "./components/Player.jsx";
 import GameBoard from "./components/GameBoard.jsx";
+import Log from "./components/Log.jsx";
+
 function App() {
 	const [activePlayer, setActivePlayer] = useState("X");
+	const [turns, setTurns] = useState([]);
 
-	function handleSelectSquare() {
+	function handleSelectSquare(rowId, colId) {
 		setActivePlayer((currentActive) => (currentActive === "X" ? "O" : "X"));
+
+		setTurns((prevTurns) => {
+			// We cannot mix states
+			let currPlayer = "X";
+			// Array can be empty at the beginning
+			// The first element in the array is the latest turn
+			currPlayer =
+				prevTurns.length > 0 && prevTurns[0].player === "X" ? "O" : "X";
+
+			const updatedTurns = [
+				{ square: { row: rowId, col: colId }, player: currPlayer },
+				...turns,
+			];
+
+			return updatedTurns;
+		});
 	}
 
 	return (
@@ -28,10 +47,10 @@ function App() {
 					</ol>
 					<GameBoard
 						onSelectSquare={handleSelectSquare}
-						activePlayerSymbol={activePlayer}
+						turns={turns}
 					/>
 				</div>
-				LOG
+				<Log />
 			</main>
 		</>
 	);
