@@ -4,24 +4,25 @@ import Player from "./components/Player.jsx";
 import GameBoard from "./components/GameBoard.jsx";
 import Log from "./components/Log.jsx";
 
+function getCurrentPlayer(turns) {
+	let currPlayer = "X";
+	// Array can be empty at the beginning
+	// The first element in the array is the latest turn
+	currPlayer = turns.length > 0 && turns[0].player === "X" ? "O" : "X";
+
+	return currPlayer;
+}
+
 function App() {
-	const [activePlayer, setActivePlayer] = useState("X");
 	const [turns, setTurns] = useState([]);
+	const activePlayer = getCurrentPlayer(turns);
 
 	function handleSelectSquare(rowId, colId) {
-		setActivePlayer((currentActive) => (currentActive === "X" ? "O" : "X"));
-
 		setTurns((prevTurns) => {
-			// We cannot mix states
-			let currPlayer = "X";
-			// Array can be empty at the beginning
-			// The first element in the array is the latest turn
-			currPlayer =
-				prevTurns.length > 0 && prevTurns[0].player === "X" ? "O" : "X";
-
+			const currPlayer = getCurrentPlayer(prevTurns);
 			const updatedTurns = [
 				{ square: { row: rowId, col: colId }, player: currPlayer },
-				...turns,
+				...prevTurns,
 			];
 
 			console.log(updatedTurns);
