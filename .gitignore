@@ -1,0 +1,11 @@
+#PyCharm
+.idea/
+*.iml
+*.pyc
+dist/
+build/
+*.spec
+
+#React
+node_modules/
+.env
