@@ -1,0 +1,25 @@
+The program should:
+
+    Use a variable to store the current account balance.
+
+    Define three functions:
+
+        deposit(amount) → adds to balance
+
+        withdraw(amount) → subtracts from balance (if enough funds)
+
+        check_balance() → prints current balance
+
+    Show a menu in a loop with options: Deposit, Withdraw, Check Balance, Quit.
+
+    Ask for user input, call the appropriate function, and update/display results.
+
+Bonus (optional):
+
+    Reject negative inputs.
+
+    Format balance as currency.
+
+    Track a simple transaction history.
+
+This project is a perfect introduction to function-based design, input validation, and working with program loops.
